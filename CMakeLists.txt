@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(ros_ign_gazebo_manager)
+project(ros_gz_gazebo_manager)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
@@ -16,27 +16,27 @@ find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
-find_package(ros_ign_bridge REQUIRED)
-find_package(ros_ign_interfaces REQUIRED)
-find_package(ignition-gazebo5 REQUIRED)
-set(IGN_GAZEBO_VER 5)
+find_package(ros_gz_bridge REQUIRED)
+find_package(ros_gz_interfaces REQUIRED)
+find_package(ignition-gazebo6 REQUIRED)
+set(IGN_GAZEBO_VER 6)
 
 # ros node
-add_executable(ign_gazebo_manager src/ign_gazebo_manager.cpp)
+add_executable(gz_gazebo_manager src/gz_gazebo_manager.cpp)
 
-target_link_libraries(ign_gazebo_manager
+target_link_libraries(gz_gazebo_manager
   ignition-gazebo${IGN_GAZEBO_VER}::ignition-gazebo${IGN_GAZEBO_VER}
 )
 
-ament_target_dependencies(ign_gazebo_manager
+ament_target_dependencies(gz_gazebo_manager
     rclcpp 
     geometry_msgs
-    ros_ign_interfaces
-    ros_ign_bridge
+    ros_gz_interfaces
+    ros_gz_bridge
 )
 
 # Install executables
-install(TARGETS ign_gazebo_manager
+install(TARGETS gz_gazebo_manager
   DESTINATION lib/${PROJECT_NAME} 
 )
 
@@ -49,7 +49,7 @@ ament_python_install_package(${PROJECT_NAME})
 
 #Install executable scripts
 install(PROGRAMS 
-        scripts/ign_demo.py
+        scripts/gz_demo.py
     DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

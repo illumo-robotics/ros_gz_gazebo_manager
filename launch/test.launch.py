@@ -16,16 +16,16 @@ def generate_launch_description():
     #ignition gazebo
     ignition_simulator = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory('ros_ign_gazebo'), 'launch', 'ign_gazebo.launch.py'), 
+            os.path.join(get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py'), 
         ),
-        launch_arguments={'ign_args':' default.sdf -v 2',}.items()
+        launch_arguments={'gz_args':' default.sdf -v 2',}.items()
     )
     ld.add_action(ignition_simulator)
     # ign_gazebo_manager 
-    ign_gazebo_manager = Node(package='ros_ign_gazebo_manager',
-            executable='ign_gazebo_manager',
-            name="ign_gazebo_manager",
+    gz_gazebo_manager = Node(package='ros_gz_gazebo_manager',
+            executable='gz_gazebo_manager',
+            name="gz_gazebo_manager",
             output='screen'
     )
-    ld.add_action(ign_gazebo_manager)
+    ld.add_action(gz_gazebo_manager)
     return ld

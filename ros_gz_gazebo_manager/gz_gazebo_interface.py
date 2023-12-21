@@ -4,33 +4,33 @@ import rclpy
 from rclpy.node import Node
 
 from geometry_msgs.msg import Transform
-from ros_ign_interfaces.srv import ControlWorld,SpawnEntity,DeleteEntity,SetEntityPose
+from ros_gz_interfaces.srv import ControlWorld,SpawnEntity,DeleteEntity,SetEntityPose
 
-class IgnGazeboInterface(Node):
-    def __init__(self,world_name="default",nodename="IgnGazeboInterface"):
+class GzGazeboInterface(Node):
+    def __init__(self,world_name="default",nodename="GzGazeboInterface"):
         super().__init__(nodename)
         #control client
-        srv_name = '/ign/%s/control'%world_name
+        srv_name = '/gz/%s/control'%world_name
         self.control_cli = self.create_client(ControlWorld,srv_name)
         while not self.control_cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service %s not available, waiting again...'%srv_name)
         #create client
-        srv_name = '/ign/%s/create'%world_name
+        srv_name = '/gz/%s/create'%world_name
         self.create_cli = self.create_client(SpawnEntity,srv_name )
         while not self.create_cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service %s not available, waiting again...'%srv_name)
         #remove client
-        srv_name = '/ign/%s/remove'%world_name
+        srv_name = '/gz/%s/remove'%world_name
         self.remove_cli = self.create_client(DeleteEntity, srv_name)
         while not self.remove_cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service %s not available, waiting again...'%srv_name)
         #move client
-        srv_name = '/ign/%s/set_pose'%world_name
+        srv_name = '/gz/%s/set_pose'%world_name
         self.move_cli = self.create_client(SetEntityPose, srv_name)
         while not self.move_cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service %s not available, waiting again...'%srv_name)
         #
-        self.get_logger().info("IgnGazeboInterface initialised successfuly")
+        self.get_logger().info("GzGazeboInterface initialised successfuly")
 
     def resume(self,is_wait=False):
         req = ControlWorld.Request()

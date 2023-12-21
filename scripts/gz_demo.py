@@ -6,15 +6,15 @@ from rclpy.node import Node
 from geometry_msgs.msg import Pose
 
 
-from ros_ign_gazebo_manager.ign_gazebo_interface import  IgnGazeboInterface
+from ros_gz_gazebo_manager.gz_gazebo_interface import  GzGazeboInterface
 
 
 if __name__ == "__main__":
     rclpy.init()
-    ign = IgnGazeboInterface()
+    gz = GzGazeboInterface()
     # Spin MoveIt2 node in the background
     executor = rclpy.executors.MultiThreadedExecutor(1)
-    executor.add_node(ign)
+    executor.add_node(gz)
     thread = threading.Thread(target=executor.spin)
     thread.start()
     input_msg="#1:resume, 2:pause, 3:create model, 4:move model 5:delete model >> "
@@ -22,17 +22,17 @@ if __name__ == "__main__":
         mode = input(input_msg)
         mode = int(mode)
         if mode == 1:
-            ign.resume()
+            gz.resume()
         elif mode == 2:
-            ign.pause()
+            gz.pause()
         elif mode ==3:
             pose=Pose()
             pose.position.z=1.1
-            ign.create_model("obj1",pose,"https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/LitterBin",is_wait=True)
+            gz.create_model("obj1",pose,"https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/LitterBin",is_wait=True)
         elif mode == 4:
             pose=Pose()
             pose.position.z=1.905
-            ign.set_model_pose("obj1",pose)
+            gz.set_model_pose("obj1",pose)
         elif mode == 5:
-            ign.remove_model("obj1")
+            gz.remove_model("obj1")
     rclpy.shutdown()     

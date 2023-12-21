@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>ros_ign_gazebo_manager</name>
+  <name>ros_gz_gazebo_manager</name>
   <version>0.0.9</version>
   <description>ROS2 Interface (Bridge) to manage Ignition Gazebo</description>
   <maintainer email="zhenpeng.ge@qq.com">Zhenpeng Ge</maintainer>
@@ -11,7 +11,7 @@
   <build_depend>rclcpp</build_depend>
   <build_depend>geometry_msgs</build_depend>
   <build_depend>tf2_msgs</build_depend>
-  <build_depend>ros_ign_interfaces</build_depend>
+  <build_depend>ros_gz_interfaces</build_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
