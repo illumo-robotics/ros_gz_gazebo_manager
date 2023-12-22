@@ -17,7 +17,12 @@ def generate_launch_description():
     gz_gazebo_manager = Node(package='ros_gz_gazebo_manager',
             executable='gz_gazebo_manager',
             name="gz_gazebo_manager",
-            output='screen'
+            output='screen',
+            parameters=[
+                {
+                    'world_name' : LaunchConfiguration('world_name')
+                }
+            ]
     )
     ld.add_action(gz_gazebo_manager)
     return ld

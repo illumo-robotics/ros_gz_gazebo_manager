@@ -110,8 +110,11 @@ int main(int argc, char* argv[]) {
     auto ros_node = std::make_shared<rclcpp::Node>("gz_gazebo_manager");
     // Ignition node
     auto gz_node = std::make_shared<gz::transport::Node>();
-    // parameter
-    std::string gz_world_name = "default";
+
+    ros_node->declare_parameter<std::string>("world_name", "demo") = "default";
+
+    std::string gz_world_name;
+    ros_node->get_parameter("world_name", gz_world_name);
     // create control service bridge
     using ControlServiceBrigde=GzServiceBrigde<ros_gz_interfaces::srv::ControlWorld,
                                 gz::msgs::WorldControl,gz::msgs::Boolean>;
