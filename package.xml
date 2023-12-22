@@ -4,7 +4,7 @@
   <name>ros_gz_gazebo_manager</name>
   <version>0.0.9</version>
   <description>ROS2 Interface (Bridge) to manage Ignition Gazebo</description>
-  <maintainer email="zhenpeng.ge@qq.com">Zhenpeng Ge</maintainer>
+  <maintainer email="nfrancinelli@illumo.ai">Nicolas Franicnelli</maintainer>
   <license>MIT License</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
