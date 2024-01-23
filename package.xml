@@ -12,7 +12,8 @@
   <build_depend>geometry_msgs</build_depend>
   <build_depend>tf2_msgs</build_depend>
   <build_depend>ros_gz_interfaces</build_depend>
-
+  <build_depend>ros_gz_bridge</build_depend>
+  <build_depend>ignition-gazebo6</build_depend>
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
